@@ -1,3 +1,1 @@
-var obj = new (function () {
-  this.name = 'Amit'
-})()
+var object = new Object()

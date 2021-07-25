@@ -6,39 +6,77 @@
 
 The simplest way to create an empty object is using the Object constructor.
 
-![object-constructor](./readme-images/ways-to-create-objects/object-constructor.PNG)
+```javascript
+var object = new Object()
+```
 
 #### Object's create method :-
 
 The create method of Object creates a new object by passing the prototype object as a parameter.
 
-![object-create-method](./readme-images/ways-to-create-objects/object-create-method.PNG)
+```javascript
+var obj = Object.create(null)
+```
 
 #### Function constructor :-
 
 Create any function and apply the new operator to create object instances.
 
-![function-constructor](./readme-images/ways-to-create-objects/function-constructor.PNG)
+```javascript
+function Person(name) {
+  var obj = {}
+  obj.name = name
+  obj.age = 28
+  return obj
+}
+
+var obj = new Person('Amit')
+```
 
 #### Function constructor with prototype :-
 
 This is similar to function constructor but it uses prototype for their properties and methods.
 
-![function-constructor-with-prototype](./readme-images/ways-to-create-objects/function-constructor-with-prototype.PNG)
+```javascript
+function Person() {}
+Person.prototype.name = 'Amit'
+var obj = new Person()
+```
 
 This is equivalent to an instance created with an object create method with a function prototype and then call that function with an instance and parameters as arguments.
 
-![function-constructor-with-prototype-2](./readme-images/ways-to-create-objects/function-constructor-with-prototype-2.PNG)
+```javascript
+function func {}
 
-##### (OR)
+new func(x, y, z)
+```
 
-![function-constructor-with-prototype-3](./readme-images/ways-to-create-objects/function-constructor-with-prototype-3.PNG)
+**(OR)**
+
+```javascript
+// Create a new instance using function prototype
+var newInstance = Object.create(func.prototype)
+
+// Call the function
+var result = func.call(newInstance, x, y, z)
+
+// If the result is a non-null object then use it otherwise just use the new instance.
+console.log(result && typeof result === 'object' ? result : newInstance)
+```
 
 #### ES6 class syntax :-
 
 ES6 introduces class feature to create the objects.
 
-![es6-class-syntax](./readme-images/ways-to-create-objects/es6-class-syntax.PNG)
+```javascript
+class Person {
+  constructor(name) {
+    this.name = name
+  }
+}
+
+var obj = new Person('Amit')
+```
 
 #### Singleton pattern :-
 
@@ -55,3 +93,5 @@ var object = new (function () {
 **Prototype chaining** is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language.
 
 The prototype on object instance is available through **Object.getPrototypeOf(object)** or **_proto_** property whereas prototype on constructors function is available through Object.prototype.
+
+![function-constructor-with-prototype](./readme-images/ways-to-create-objects/function-constructor-with-prototype.PNG)
