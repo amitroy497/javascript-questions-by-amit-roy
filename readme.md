@@ -44,4 +44,15 @@ ES6 introduces class feature to create the objects.
 
 A Singleton is an object which can only be instantiated one time. Repeated calls to its constructor return the same instance and this way one can ensure that they don't accidentally create multiple instances.
 
-![singleton-pattern](./readme-images/ways-to-create-objects/singleton-pattern.PNG)
+\*\*\*javascript
+var obj = new (function () {
+this.name = 'Amit'
+})()
+
+---
+
+## Prototype chain
+
+**Prototype chaining** is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language.
+
+The prototype on object instance is available through **Object.getPrototypeOf(object)** or **_proto_** property whereas prototype on constructors function is available through Object.prototype.
