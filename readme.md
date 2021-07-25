@@ -104,7 +104,9 @@ arr._proto_._proto_
 ![array-prototype](./readme-images/prototype-chain/array-prototype.PNG)
 
 **arr.\_proto\_** is same as **Array.prototype**.
+
 **arr.\_proto\_._proto\_** is same as **Object.prototype**.
+
 **arr.\_proto\_._proto\_._proto\_** is **null**.
 
 ![prototype-chain](./readme-images/prototype-chain/prototype-chain.png)
