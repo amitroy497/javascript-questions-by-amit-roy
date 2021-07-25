@@ -44,12 +44,11 @@ ES6 introduces class feature to create the objects.
 
 A Singleton is an object which can only be instantiated one time. Repeated calls to its constructor return the same instance and this way one can ensure that they don't accidentally create multiple instances.
 
-\*\*\*javascript
-var obj = new (function () {
-this.name = 'Amit'
+```javascript
+var object = new (function () {
+  this.name = 'Amit'
 })()
-
----
+```
 
 ## Prototype chain
 
