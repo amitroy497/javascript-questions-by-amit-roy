@@ -1,1 +1,1 @@
-var object = new Object()
+let arr = ['Amit', 'Roy']

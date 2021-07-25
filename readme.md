@@ -92,6 +92,19 @@ var object = new (function () {
 
 **Prototype chaining** is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language.
 
-The prototype on object instance is available through **Object.getPrototypeOf(object)** or **_proto_** property whereas prototype on constructors function is available through Object.prototype.
+The prototype on object instance is available through **Object.getPrototypeOf(object)** or **_proto_** property whereas prototype on constructors function is available through **Object.prototype**.
 
-![function-constructor-with-prototype](./readme-images/ways-to-create-objects/function-constructor-with-prototype.PNG)
+Whenever we create an object. JS engine automatically attaches an object to our object, and by this way we get access to the default properties and methods.
+
+```javascript
+let arr = ['Amit', 'Roy']
+arr._proto_._proto_
+```
+
+![array-prototype](./readme-images/prototype-chain/array-prototype.PNG)
+
+**arr._proto_** is same as **Array.prototype**.
+**arr._proto_._proto_** is same as **Object.prototype**.
+**arr._proto_._proto_._proto_** is **null**.
+
+![prototype-chain](./readme-images/prototype-chain/prototype-chain.png)
