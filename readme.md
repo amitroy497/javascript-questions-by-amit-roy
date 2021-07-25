@@ -110,3 +110,46 @@ arr._proto_._proto_
 **arr.\_proto\_._proto\_._proto\_** is **null**.
 
 ![prototype-chain](./readme-images/prototype-chain/prototype-chain.png)
+
+## Call, Apply and Bind
+
+![call-apply-bind](./readme-images/call-apply-bind/call-apply-bind.jpg)
+
+**Call** invokes the function with a given **this** value and allow us to pass the arguments one by one.
+
+**Apply** invokes the function with a given **this** value and allow us to pass in arguments as an array.
+
+**Bind** returns a function allowing us to pass any number of arguments.
+
+```javascript
+let employee1 = { firstName: 'Jack', lastName: 'Sparrow' }
+let employee2 = { firstName: 'John', lastName: 'Carter' }
+
+function invite(greeting1, greeting2) {
+  console.log(`${greeting1} ${this.firstName} ${this.lastName}, ${greeting2}`)
+}
+```
+
+### Call
+
+```javascript
+invite.call(employee1, 'Hello', 'How are you?')
+invite.call(employee2, 'Hello', 'How are you?')
+```
+
+### Apply
+
+```javascript
+invite.apply(employee1, ['Hello', 'How are you?'])
+invite.apply(employee2, ['Hello', 'How are you?'])
+```
+
+### Bind
+
+```javascript
+let inviteEmployee1 = invite.bind(employee1)
+let inviteEmployee2 = invite.bind(employee2)
+
+inviteEmployee1('Hello', 'How are you?')
+inviteEmployee2('Hello', 'How are you?')
+```
