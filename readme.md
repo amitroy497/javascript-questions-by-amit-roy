@@ -161,3 +161,37 @@ inviteEmployee2('Hello', 'How are you?')
 | Doesn't modify the original array(immutable) | Modifies the original array(mutable)            |
 | Returns the subset of original array         | Returns the deleted elements as array           |
 | Used to pick the elements from array         | Used to insert or delete elements to/from array |
+
+## How arrow functions are different from lambda functions
+
+An arrow function is a shorter syntax for a function expression and does not have its own **this**, **arguments**, **super**, or **new.target**.
+These functions are best suited for non-method functions, and they cannot be used as constructors.
+
+## First class function
+
+In Javascript, functions are first class objects.
+First-class functions means when **functions in that language are treated like any other variable**.
+
+For example, a function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable, etc.
+
+## First order function
+
+First-order function is a function that **doesn’t accept another function as an argument** and **doesn’t return a function as its return value**.
+
+```javascript
+const firstOrder = () => console.log('I am a First Order Function.')
+```
+
+## High order function
+
+Higher-order function is a **function that accepts another function as an argument or returns a function as a return value or both**.
+
+```javascript
+const firstOrderFunc = () => console.log('I am a First Order Function')
+
+const higherOrder = (returnFirstOrderFunc) => {
+  returnFirstOrderFunc()
+}
+
+higherOrder(firstOrderFunc)
+```
