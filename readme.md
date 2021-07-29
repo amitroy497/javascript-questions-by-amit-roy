@@ -382,3 +382,104 @@ myFunction('Hello Mr.') //output: Hello Mr.John
 ```
 
 As per the above code, the inner function(i.e, greetingInfo) has access to the variables in the outer function scope(i.e, Welcome) even after the outer function has returned.
+
+## Service worker
+
+A Service worker is basically a script (JavaScript file) that runs in the background, separate from a web page and provides features that don't need a web page or user interaction.
+
+Some of the major features of service workers are Rich offline experiences (offline first web application development), periodic background syncs, push notifications, intercept and handle network requests and programmatically managing a cache of responses.
+
+## How do you manipulate DOM using a service worker?
+
+Service worker can't access the DOM directly. But it can communicate with the pages it controls by responding to messages sent via the _postMessage_ interface, and those pages can manipulate the DOM.
+
+## How do you reuse information across service worker restarts?
+
+The problem with service worker is that it gets terminated when not in use, and restarted when it's next needed, so we cannot rely on global state within a service worker's _onfetch_ and _onmessage_ handlers.
+
+In this case, service workers will have access to **IndexedDB API** in order to persist and reuse across restarts.
+
+## What is IndexedDB?
+
+IndexedDB is a low-level API for client-side storage of larger amounts of structured data, including files/blobs.
+
+This API uses indexes to enable high-performance searches of this data.
+
+## What is a post message?
+
+Post message is a method that enables cross-origin communication between Window objects.(i.e, between a page and a pop-up that it spawned, or between a page and an iframe embedded within it).
+
+Generally, scripts on different pages are allowed to access each other if and only if the pages follow same-origin policy (i.e, pages share the same protocol, port number, and host).
+
+## What are the differences between cookie, local storage and session storage
+
+Below are some of the differences between cookie, local storage and session storage,
+
+| Feature                           | Cookie                             | Local storage    | Session storage     |
+| --------------------------------- | ---------------------------------- | ---------------- | ------------------- |
+| Accessed on client or server side | Both server-side & client-side     | client-side only | client-side only    |
+| Lifetime                          | As configured using Expires option | until deleted    | until tab is closed |
+| SSL support                       | Supported                          | Not supported    | Not supported       |
+| Maximum data size                 | 4KB                                | 5 MB             | 5MB                 |
+
+## Difference between Shallow and Deep copy
+
+**Shallow Copy:**
+
+Shallow copy is a bitwise copy of an object.
+
+A new object is created that has an exact copy of the values in the original object.
+
+If any of the fields of the object are references to other objects, just the reference addresses are copied i.e., only the memory address is copied.
+
+**Example**
+
+```javascript
+var empDetails = {
+  name: 'John',
+  age: 25,
+  expertise: 'Software Developer',
+}
+```
+
+to create a duplicate
+
+```javascript
+var empDetailsShallowCopy = empDetails //Shallow copying!
+```
+
+if we change some property value in the duplicate one like this:
+
+```javascript
+empDetailsShallowCopy.name = 'Johnson'
+```
+
+The above statement will also change the name of `empDetails`, since we have a shallow copy. That means we're losing the original data as well.
+
+**Deep copy:**
+
+A deep copy copies all fields, and makes copies of dynamically allocated memory pointed to by the fields.
+
+A deep copy occurs when an object is copied along with the objects to which it refers.
+
+**Example**
+
+```javascript
+var empDetails = {
+  name: 'John',
+  age: 25,
+  expertise: 'Software Developer',
+}
+```
+
+Create a deep copy by using the properties from the original object into new variable
+
+```javascript
+var empDetailsDeepCopy = {
+  name: empDetails.name,
+  age: empDetails.age,
+  expertise: empDetails.expertise,
+}
+```
+
+Now if you change `empDetailsDeepCopy.name`, it will only affect `empDetailsDeepCopy` & not `empDetails`
