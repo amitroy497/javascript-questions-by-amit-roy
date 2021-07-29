@@ -343,3 +343,42 @@ useMemo handles dependencies slightly differently than React.memo.
 useMemo, instead of a function with props, it accepts a dependency array for the second argument.
 
 The dependency array in useMemo, will check for changes in the array between renders, if any of the values have changed then it will re-run our function to get a new memoized value.
+
+## Temporal Dead Zone
+
+The Temporal Dead Zone is a behavior in JavaScript that occurs when declaring a variable with the let and const keywords, but not with var.
+
+In ECMAScript 6, accessing a `let` or `const` variable before its declaration (within its scope) causes a _ReferenceError_.
+
+**The time span when that happens, between the creation of a variable’s binding and its declaration**, is called the temporal dead zone.
+
+```javascript
+function someMethod() {
+  console.log(counter1) // undefined
+  console.log(counter2) // ReferenceError
+  var counter1 = 1
+  let counter2 = 2
+}
+```
+
+## Closures
+
+A closure is the combination of a function and the lexical environment within which that function was declared. i.e, It is an inner function that has access to the outer or enclosing function’s variables. The closure has three scope chains
+
+1. Own scope where variables defined between its curly brackets
+2. Outer function’s variables
+3. Global variables
+
+```javascript
+function Welcome(name) {
+  var greetingInfo = function (message) {
+    console.log(message + ' ' + name)
+  }
+  return greetingInfo
+}
+var myFunction = Welcome('John')
+myFunction('Welcome ') //Output: Welcome John
+myFunction('Hello Mr.') //output: Hello Mr.John
+```
+
+As per the above code, the inner function(i.e, greetingInfo) has access to the variables in the outer function scope(i.e, Welcome) even after the outer function has returned.
