@@ -288,7 +288,8 @@ const memorizeAddition = () => {
   return (value) => {
     if (value in cache) {
       console.log('Fetching from cache')
-      return cache[value] // Here, cache.value cannot be used as property name starts with the number which is not a valid JavaScript  identifier. Hence, can only be accessed using the square bracket notation.
+      return cache[value]
+      // Here, cache.value cannot be used as property name starts with the number which is not a valid JavaScript  identifier. Hence, can only be accessed using the square bracket notation.
     } else {
       console.log('Calculating result')
       let result = value + 20
@@ -306,3 +307,39 @@ console.log(addition(20)) //output: 40 cached
 ```
 
 ## React.memo vs. useMemo Hooks
+
+React.memo is a **higher-order component (HOC) which accepts a react component and an optional function that uses props to conditionally update the component using memoization**.
+
+Whereas useMemo is a react hook that will **accept a function and a dependency array and then memoize the value returned from the function passed into it**.
+
+In useMemo it **remembers the value returned between renders**.
+
+In React.memo it **remembers the react component between renders**.
+
+## How do dependencies get managed with React.memo vs useMemo?
+
+Dependencies here mean the values/variables that will cause our memoized function or component to re-render or re-run when new values are passed in.
+
+### Dependencies with React.memo
+
+In React.memo we need to provide our react component as well as an optional function to handle when it should be updated.
+
+If we don’t provide the optional function React.memo will automatically shallowly compare our props and re-render whenever they change.
+
+The function we provide will handle the dependencies by accepting 2 parameters which are the previous and the next props.
+
+It is then our job to use the previous and next props to decide if our component needs to be re-rendered by returning a boolean of either true or false.
+
+React.memo’s dependency function expects to have the question of _"Are the props still the same?"_ answered.
+
+With that in mind, if we return true we are saying that, _"Yes, the props are the same, please don't re-render this component"_.
+
+If we return false, we are saying _"No, these props are not the same, please re-render my component"_.
+
+### Dependencies with useMemo
+
+useMemo handles dependencies slightly differently than React.memo.
+
+useMemo, instead of a function with props, it accepts a dependency array for the second argument.
+
+The dependency array in useMemo, will check for changes in the array between renders, if any of the values have changed then it will re-run our function to get a new memoized value.
