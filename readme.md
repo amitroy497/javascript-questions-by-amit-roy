@@ -237,3 +237,72 @@ curryUnaryFunction(1)(2)(3) // returns the number 6
 ```
 
 Curried functions are great to improve **code reusability** and **functional composition**.
+
+## Pure function
+
+A **Pure function** is a function where the return value is only determined by its arguments without any side effects.
+
+i.e, If we call a function with the same arguments 'n' number of times and 'n' number of places in the application then it will always return the same value.
+
+```javascript
+//Impure
+let numberArray = []
+const impureAddNumber = (number) => {
+  numberArray.push(number)
+}
+
+//Pure
+const pureAddNumber = (number) => (argNumberArray) => {
+  argNumberArray.concat([number])
+}
+
+//Display the results
+console.log(impureAddNumber(6)) // returns 1
+console.log(numberArray) // returns [6]
+
+console.log(pureAddNumber(7)(numberArray)) // returns [6, 7]
+console.log(numberArray) // returns [6]
+```
+
+As per above code snippets, **Push** function is impure itself by altering the array and returning an push number index which is independent of parameter value.
+
+Whereas **Concat** on the other hand takes the array and concatenates it with the other array producing a whole new array without side effects. Also, the return value is a concatenation of the previous array.
+
+Pure functions are important as they simplify unit testing without any side effects and no need for dependency injection.
+
+They also avoid tight coupling and make it harder to break your application by not having any side effects.
+
+These principles are coming together with **Immutability** concept of ES6 by giving preference to **const** over **let** usage.
+
+## Memorization
+
+Memoization is a programming technique which attempts to **increase a function’s performance by caching its previously computed results**.
+
+Each time a memoized function is called, its parameters are used to index the cache.
+
+If the data is present, then it can be returned, without executing the entire function. Otherwise the function is executed and then the result is added to the cache.
+
+```javascript
+const memorizeAddition = () => {
+  let cache = {}
+  return (value) => {
+    if (value in cache) {
+      console.log('Fetching from cache')
+      return cache[value] // Here, cache.value cannot be used as property name starts with the number which is not a valid JavaScript  identifier. Hence, can only be accessed using the square bracket notation.
+    } else {
+      console.log('Calculating result')
+      let result = value + 20
+      cache[value] = result
+      return result
+    }
+  }
+}
+
+// returned function from memorizeAddition
+const addition = memorizeAddition()
+
+console.log(addition(20)) //output: 40 calculated
+console.log(addition(20)) //output: 40 cached
+```
+
+## React.memo vs. useMemo Hooks
