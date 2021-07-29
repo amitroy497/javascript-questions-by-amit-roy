@@ -165,11 +165,13 @@ inviteEmployee2('Hello', 'How are you?')
 ## How arrow functions are different from lambda functions
 
 An arrow function is a shorter syntax for a function expression and does not have its own **this**, **arguments**, **super**, or **new.target**.
+
 These functions are best suited for non-method functions, and they cannot be used as constructors.
 
 ## First class function
 
 In Javascript, functions are first class objects.
+
 First-class functions means when **functions in that language are treated like any other variable**.
 
 For example, a function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable, etc.
@@ -195,3 +197,43 @@ const higherOrder = (returnFirstOrderFunc) => {
 
 higherOrder(firstOrderFunc)
 ```
+
+## Unary function
+
+Unary function (i.e. monadic) is a **function that accepts exactly one argument**.
+
+It stands for a single argument accepted by a function.
+
+```javascript
+const unaryFunction = (a) => {
+  console.log(a + 10)
+}
+```
+
+## Currying function
+
+Currying is the **process of taking a function with multiple arguments and turning it into a sequence of functions each with only a single argument**.
+
+Currying is named after a mathematician **Haskell Curry**.
+
+By applying currying, a n-ary function turns it into a unary function.
+
+```javascript
+const multiArgFunction = (a, b, c) => {
+  a + b + c
+}
+
+console.log(multiArgFunction(1, 2, 3)) // 6
+
+const curryUnaryFunction = (a) => (b) => (c) => {
+  a + b + c
+}
+
+curryUnaryFunction(1) // returns a function: b => c =>  1 + b + c
+
+curryUnaryFunction(1)(2) // returns a function: c => 3 + c
+
+curryUnaryFunction(1)(2)(3) // returns the number 6
+```
+
+Curried functions are great to improve **code reusability** and **functional composition**.
